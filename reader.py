@@ -2,6 +2,7 @@ import html
 import os
 import pydoc
 import sys
+import shlex
 import tempfile
 from subprocess import call, Popen, PIPE
 
@@ -28,7 +29,7 @@ class Reader(object):
 
     def _display(self, article):
         if self.pager:
-            with tempfile.NamedTemporaryFile(suffix='.tmp') as tf:
+            with tempfile.NamedTemporaryFile(suffix='.markdown') as tf:
                 tf.write(bytes(article, 'utf-8'))
                 tf.flush()
                 call(self.pager+[tf.name])
@@ -39,10 +40,10 @@ class Reader(object):
             print(article)
 
     def _create_pager_args(self):
-        pager = os.environ.get('PAGER')
+        pager = os.environ.get('MICROFORM_PAGER')
         if not pager:
             return None
-        return pager.split()
+        return shlex.split(pager)
 
     def _format(self, content):
         unescaped_html = html.unescape(content)
@@ -51,16 +52,16 @@ class Reader(object):
 
 def main():
     api_key = os.environ.get('MERCURY_API_KEY')
-    url = sys.argv[1]
 
     if not api_key:
-        print('You need to set an Mercury Parser API key as an environment variable',
+        print('You need to set an Mercury Parser API key as an environment variable\n',
               'E.g., on Bash: "export MERCURY_API_KEY=XXXXXXXXXXXXX"')
         return
 
-    if not url:
-        print('You need to pass a url as an argument to reader',
-              'E.g., "python reader.py https://somearticle.com')
+    try:
+        url = sys.argv[1]
+    except IndexError as e:
+        print('No url supplied')
         return
 
     reader = Reader(api_key).read(url)
