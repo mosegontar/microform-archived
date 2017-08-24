@@ -12,7 +12,7 @@ For now, clone this repository
 
 The only required environment variable that must be set is `MERCURY_API_KEY`, which should be set to the API key provided to you by Mercury Web Parser.
 
-Other configuration options incldue:
+Other configuration options include:
 
 - `MERCURY_DB_NAME`: name of the sqlite db where cached reponses from Mercury Web Parser are stored.
 - `MICROFORM_PAGER`: The pager that will be launched to display your article
@@ -26,7 +26,7 @@ Other configuration options incldue:
 
 ## Usage
 
-Before using, you must set the `MERCURY`
+Before using, you must set the `MERCURY_API_KEY` to the API key provided to you by Mercury Web Parser.
 
 For the time being:
 
