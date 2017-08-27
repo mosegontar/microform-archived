@@ -9,9 +9,7 @@ In general, I've found Mercury Web Parser to be very good, but there are some ca
 
 ## Installation & Configuration
 
-For now, clone this repository
-
-    git clone https://github.com/mosegontar/microform.git
+`pip install microform`
 
 The only required environment variable that must be set is `MERCURY_API_KEY`, which should be set to the API key provided to you by Mercury Web Parser.
 
@@ -28,12 +26,9 @@ Other configuration options include:
 - tomd
 
 ## Usage
+`microform https://foo.com/barticle`
 
 Before using, you must set the `MERCURY_API_KEY` to the API key provided to you by Mercury Web Parser.
-
-For the time being:
-
-    python microform.py https://fas.cina.ting/article
 
 ### Pagers
 
