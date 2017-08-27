@@ -1,6 +1,6 @@
 # microform
 
-**microform** is a command-line utility for reading articles in the terminal. It uses [Mercury Web Parser](https://mercury.postlight.com/web-parser/) and [tomd](https://github.com/gaojiuli/tomd) (an HTML to Markdown converter) to fetch a web page and generate a readable, markdown version of its content. microform serves a purpose similar to other "reader" services, such as [Readability](https://en.wikipedia.org/wiki/Readability_(service)), Safari Reader, Firefox Reader View, Instapaper. Except now you don't have to come out of your shell.
+**microform** is a command-line utility for reading articles in the terminal. It uses [Mercury Web Parser](https://mercury.postlight.com/web-parser/) and [tomd](https://github.com/gaojiuli/tomd) (an HTML to Markdown converter) to fetch a web page and generate a readable, markdown version of its content. microform serves a purpose similar to other "reader" services, such as [Readability](https://en.wikipedia.org/wiki/Readability_(service)), Safari Reader, Firefox Reader View, Instapaper.
 
 microform makes use of [requests-cache](https://github.com/reclosedev/requests-cache) to cache responses from Mercury Web Parser. The default database is a `mercury.sqlite` file. However, you can configure microform to use a DB name of your choice, by setting the `MERCURY_DB_NAME` environment variable.
 
