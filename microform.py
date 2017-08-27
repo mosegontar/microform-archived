@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import html
 import os
 import pydoc
