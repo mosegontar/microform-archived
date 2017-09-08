@@ -11,11 +11,13 @@ import requests_cache
 
 
 MERCURY_DB_NAME = os.environ.get('MERCURY_DB_NAME', 'mercury')
+base = os.path.dirname(__file__)
+mercury_db = os.path.join([base, MERCURY_DB_NAME]) 
 
 requests_cache.install_cache(
-    MERCURY_DB_NAME,
+    mercury_db,
     backend='sqlite',
-    expire_after=300#(#60*60*24*7*4) # 4 weeks
+    expire_after = 60*60*24*7*4 # 4 weeks
 )
 
 
