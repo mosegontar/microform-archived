@@ -11,8 +11,8 @@ import requests_cache
 
 
 MERCURY_DB_NAME = os.environ.get('MERCURY_DB_NAME', 'mercury')
-base = os.path.dirname(__file__)
-mercury_db = os.path.join([base, MERCURY_DB_NAME]) 
+base = os.path.dirname(os.path.abspath(__file__))
+mercury_db = os.path.join(base, MERCURY_DB_NAME) 
 
 requests_cache.install_cache(
     mercury_db,
