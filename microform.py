@@ -2,10 +2,11 @@
 import html
 import os
 import pydoc
+import re
 import sys
 import shlex
 import tempfile
-from subprocess import call, Popen, PIPE
+from subprocess import call
 
 from tomd import Tomd
 
@@ -59,14 +60,14 @@ def main():
               'E.g., on Bash: "export MERCURY_API_KEY=XXXXXXXXXXXXX"')
         return
 
-    try:
-        url = sys.argv[1]
-    except IndexError as e:
-        print('No url supplied')
+    args = sys.argv[1:]
+    if args:
+        url = args[-1]
+    else:
+        print('No URL supplied')
         return
 
     reader = Reader(api_key).read(url)
-
 
 if __name__ == '__main__':
     main()

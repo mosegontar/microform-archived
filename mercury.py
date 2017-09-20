@@ -13,9 +13,12 @@ import requests_cache
 MERCURY_DB_NAME = os.environ.get('MERCURY_DB_NAME', 'mercury')
 local_share_dir = os.path.join(os.environ.get('HOME'), '.local', 'share')
 mercury_db_path = os.path.join(local_share_dir, 'microform')
+
 if not os.path.exists(mercury_db_path):
     os.makedirs(mercury_db_path)
+
 mercury_db_file = os.path.join(mercury_db_path, MERCURY_DB_NAME)
+
 requests_cache.install_cache(
     mercury_db_file,
     backend='sqlite',
