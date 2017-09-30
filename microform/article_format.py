@@ -52,9 +52,9 @@ class ArticleFormatter(object):
         self.refs = References() if references else None
 
     def render(self):
-
+        endnotes = ''
         if self.refs:
             self.content = self.refs.process(html.unescape(self.content))
-            self.content += '\n' + self.refs.endnotes
-        print(self.content)
-        return Tomd(self.content).markdown
+            endnotes = '\n' + self.refs.endnotes
+
+        return Tomd(self.content).markdown + endnotes
