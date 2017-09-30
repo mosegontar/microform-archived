@@ -18,7 +18,7 @@ required = [
 
 setup(
     name='microform',
-    version='0.1.7',
+    version='0.1.8',
     description='command-line utility for reading articles in the terminal',
     long_description= 'It uses Mercury Web Parser and tomd (an HTML to Markdown converter) to fetch a web page and generate a readable, markdown version of its content. microform serves a purpose similar to other "reader" services, such as Readability, Safari Reader, Firefox Reader View, Instapaper.',
     author='Alexander Gontar',
@@ -26,7 +26,7 @@ setup(
     url='https://github.com/mosegontar/microform',
     packages=find_packages(exclude=('tests',)),
     #py_modules=['mercury', 'microform'],
-    entry_points= {'console_scripts': ['microform = microform:microform:main']},
+    entry_points= {'console_scripts': ['microform = microform.microform:main']},
     install_requires=required,
     include_package_data=True,
     license='MIT',
