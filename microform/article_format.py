@@ -12,7 +12,7 @@ class References(object):
         self.content = ''
         self.endnotes = """
 REFERENCES
-==========\n\n
+==========\n
 """
 
     def process(self, content):
@@ -55,6 +55,6 @@ class ArticleFormatter(object):
 
         if self.refs:
             self.content = self.refs.process(html.unescape(self.content))
-            self.content += self.refs.endnotes
-
+            self.content += '\n' + self.refs.endnotes
+        print(self.content)
         return Tomd(self.content).markdown

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import html
 import os
 import pydoc
 import re
@@ -8,8 +7,8 @@ import shlex
 import tempfile
 from subprocess import call
 
-from tomd import Tomd
 
+from article_format import ArticleFormatter
 from mercury import Mercury
 
 
@@ -25,9 +24,9 @@ class Reader(object):
             print('No content')
             return
 
-        article = self._format(result['content'])
+        article = ArticleFormatter(result['content'], True)
 
-        self._display(article)
+        self._display(article.render())
 
     def _display(self, article):
         if self.pager:
@@ -46,13 +45,6 @@ class Reader(object):
         if not pager:
             return None
         return shlex.split(pager)
-
-    def _format(self, content):
-
-        ref = References()
-        content =  ref.process(html.unescape(content))
-        endotes = ref.get_endnotes()
-        return content + '\n' + endotes
 
 
 def main():
