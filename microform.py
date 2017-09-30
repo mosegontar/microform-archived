@@ -13,6 +13,49 @@ from tomd import Tomd
 from mercury import Mercury
 
 
+
+class References(object):
+
+    def __init__(self):
+        self.references = []
+        self.pattern = r'<a.*?href="(.*?)".*?>(.*?)<\/a>'
+
+    def process(self, content):
+
+        new_string, n = re.subn(self.pattern,
+                                self._get_ref,
+                                content,
+                                count=1)
+
+        if n < 1:
+            return Tomd(content).markdown
+
+        return self.process(new_string)
+
+    def get_endnotes(self):
+        header = """## REFERENCES\n"""
+        header += '=' * len(header)
+        header += '\n\n'
+
+        endnotes = ''
+        for i, ref in enumerate(self.references):
+            num = i + 1
+            endnotes += '[{}] {}\n'.format(num, ref)
+
+        return header + endnotes
+
+
+    def _get_ref(self, matchobj):
+
+        url, text = matchobj.groups()
+
+        self.references.append(url)
+
+        return '{} [^{}]'.format(text, len(self.references))
+
+
+
+
 class Reader(object):
 
     def __init__(self, api_key):
@@ -48,8 +91,11 @@ class Reader(object):
         return shlex.split(pager)
 
     def _format(self, content):
-        unescaped_html = html.unescape(content)
-        return Tomd(unescaped_html).markdown
+
+        ref = References()
+        content =  ref.process(html.unescape(content))
+        endotes = ref.get_endnotes()
+        return content + '\n' + endotes
 
 
 def main():
