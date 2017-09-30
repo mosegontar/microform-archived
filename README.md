@@ -28,7 +28,11 @@ Other configuration options include:
 ## Usage
 `microform https://foo.com/barticle`
 
-Before using, you must set the `MERCURY_API_KEY` to the API key provided to you by Mercury Web Parser.
+You can convert links to references, with a set of endnotes appearing at the end of the article by using the `--refs` option:
+
+`microform https://foo.com/barticle.com --refs`
+
+**Note**: Before using, you must set the `MERCURY_API_KEY` to the API key provided to you by Mercury Web Parser.
 
 ### Pagers
 
