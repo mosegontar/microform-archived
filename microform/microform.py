@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import argparse
 import os
 import pydoc
 import re
@@ -18,13 +19,13 @@ class Reader(object):
         self.parser = Mercury(api_key)
         self.pager = self._create_pager_args()
 
-    def read(self, url):
+    def read(self, url, refs=False):
         result = self.parser.get(url)
         if not result.get('content'):
             print('No content')
             return
 
-        article = ArticleFormatter(result['content'], True)
+        article = ArticleFormatter(result['content'], refs)
 
         self._display(article.render())
 
@@ -55,14 +56,14 @@ def main():
               'E.g., on Bash: "export MERCURY_API_KEY=XXXXXXXXXXXXX"')
         return
 
-    args = sys.argv[1:]
-    if args:
-        url = args[-1]
-    else:
-        print('No URL supplied')
-        return
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--refs', action='store_true', default=False,
+                        help='Convert links to cited references')
+    parser.add_argument('url', help="Article URL to parse.")
 
-    reader = Reader(api_key).read(url)
+    args = parser.parse_args()
+    
+    reader = Reader(api_key).read(args.url, args.refs)
 
 if __name__ == '__main__':
     main()
