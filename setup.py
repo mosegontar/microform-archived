@@ -24,8 +24,10 @@ setup(
     author='Alexander Gontar',
     author_email='mosegontar@gmail.com',
     url='https://github.com/mosegontar/microform',
-    py_modules=['mercury', 'microform'],
-    entry_points= {'console_scripts': ['microform = microform:main']},
+    packages=find_packages(exclude=('tests',)),
+    #py_modules=['mercury', 'microform'],
+    #entry_points= {'console_scripts': ['microform = microform:main']},
     install_requires=required,
+    include_package_data=True,:
     license='MIT',
 )
