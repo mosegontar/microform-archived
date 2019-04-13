@@ -1,4 +1,7 @@
 # microform
+## The Mercury Web Parser API shuts down 4/15/2019. This project relied on the Merucry Web Parser API, and so will no longer function as is. I've archived this project as of 4/12/2019.
+
+### (For those interested, Postlight has open-sourced the Mercury Parser API: https://github.com/postlight/mercury-parser)
 
 **microform** is a command-line utility for reading articles in the terminal. It uses [Mercury Web Parser](https://mercury.postlight.com/web-parser/) and [tomd](https://github.com/gaojiuli/tomd) (an HTML to Markdown converter) to fetch a web page and generate a readable, markdown version of its content. microform serves a purpose similar to other "reader" services, such as [Readability](https://en.wikipedia.org/wiki/Readability_(service)), Safari Reader, Firefox Reader View, Instapaper.
 
